@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  metric: MyString
+  estimated_result_date: 2016-07-26
+  actual_result_date: 2016-07-26
+  result: 9.99
+
+two:
+  name: MyString
+  metric: MyString
+  estimated_result_date: 2016-07-26
+  actual_result_date: 2016-07-26
+  result: 9.99

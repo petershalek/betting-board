@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :user_bets
+  resources :bets
+  resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -54,5 +57,8 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  root 'application#hello'
+  resources :bets
+  resources :users
+  resources :user_bets
+  root 'users#index'
 end
