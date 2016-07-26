@@ -31,14 +31,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    respond_to do |format|
-      if @user.save
-        log_in @user
-        flash[:success] = "Welcome to the betting board! Place your bets as to who it benefits."
-        redirect_to @user
-      else
-        render 'new'
-      end
+    if @user.save
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
+    else
+      render 'new'
     end
   end
 
