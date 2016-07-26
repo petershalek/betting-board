@@ -29,6 +29,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        log_in @user
         flash[:success] = "Welcome to the betting board! Place your bets as to who it benefits."
         format.html { redirect_to @user }
         format.json { render :show, status: :created, location: @user }
