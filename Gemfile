@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.3'
 # Using bootstrap for styling. Sorry Christine.
 gem 'bootstrap-sass', '3.3.6'
+# Use bcrypt for password encryption
+gem 'bcrypt', '3.1.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
