@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'static_pages/home'
+
+  get 'static_pages/help'
+
   resources :user_bets
   resources :bets
   resources :users
@@ -60,5 +64,7 @@ Rails.application.routes.draw do
   resources :bets
   resources :users
   resources :user_bets
+  get  'static_pages/home'
+  get  'static_pages/help'
   root 'users#index'
 end
