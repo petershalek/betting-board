@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create!(name:  "Example User 1",
-             email: "example1@railstutorial.org",
+             email: "joy@joyable.com",
              password:              "foobar",
              password_confirmation: "foobar",
              admin: true,
@@ -15,7 +15,7 @@ User.create!(name:  "Example User 1",
              activated_at: Time.zone.now)
 
 User.create!(name:  "Example User 2",
-             email: "example2@railstutorial.org",
+             email: "joyce@joyable.com",
              password:              "foobar",
              password_confirmation: "foobar",
              admin: true,
@@ -23,7 +23,7 @@ User.create!(name:  "Example User 2",
              activated_at: Time.zone.now)
 
 User.create!(name:  "Example User 3",
-             email: "example3@railstutorial.org",
+             email: "joyner@joyable.com",
              password:              "foobar",
              password_confirmation: "foobar",
              admin: true,
