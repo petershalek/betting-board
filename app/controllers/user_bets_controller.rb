@@ -33,7 +33,7 @@ class UserBetsController < ApplicationController
 
     if @user_bet.save
       flash[:success] = "Your bet is in!"
-      redirect_to root_url
+      redirect_to experiments_url
     else
       format.html { render :new }
       format.json { render json: @user_bet.errors, status: :unprocessable_entity }

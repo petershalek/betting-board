@@ -17,13 +17,26 @@ class ExperimentsController < ApplicationController
       @user_bets_table[user_bet.experiment_id][user_bet.user_id] = user_bet.user_bet
     end
 
+    # Create a list of Experiments. Show results for 14 days past results date.
+    @active_experiments = Experiment.where('estimated_result_date > ?', Time.zone.now - 7.days)
+
     # Create a list of Users.
     # TODO Filter for only relevant users (i.e. those with active bets)
-    @active_bet_users = User.all
+#    @active_bet_users = Set.new
+#    @all_users = User.all
+#    @all_users.each do |user|
+#      @active_bet_users.add(user)
+#    end
 
-    # Create a list of Experiments.
-    # TODO Filter for only relevant experiments (i.e. those with active bets)
-    @active_experiments = Experiment.all
+#    @active_bet_users = User.all
+
+    @active_bet_users = Set.new
+
+    @active_experiments.each do |experiment|
+      experiment.user_bets.each do |user_bet|
+        @active_bet_users.add(User.find_by_id(user_bet.user_id))
+      end
+    end
   end
 
   # GET /experiments/1

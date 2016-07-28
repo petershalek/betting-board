@@ -22,10 +22,18 @@ User.create!(name:  "Example User 2",
              activated: true,
              activated_at: Time.zone.now)
 
+User.create!(name:  "Example User 3",
+             email: "example3@railstutorial.org",
+             password:              "foobar",
+             password_confirmation: "foobar",
+             admin: true,
+             activated: true,
+             activated_at: Time.zone.now)
+
 Experiment.create!(name: "Exp 1",
                    metric: "TTP",
-                   estimated_result_date: Time.zone.now,
-                   bet_by_date: Time.zone.now - 1.day,
+                   estimated_result_date: Time.zone.now - 10.days,
+                   bet_by_date: Time.zone.now - 15.days,
                    result: 2)
 
 Experiment.create!(name: "Exp 2",
@@ -38,6 +46,12 @@ Experiment.create!(name: "Exp 3",
                    metric: "Cheese Consumed",
                    estimated_result_date: Time.zone.now + 30.days,
                    bet_by_date: Time.zone.now + 30.days,
+                   result: nil)
+
+Experiment.create!(name: "Exp 4",
+                   metric: "Cows Tipped",
+                   estimated_result_date: Time.zone.now - 5.days,
+                   bet_by_date: Time.zone.now - 15.days,
                    result: nil)
 
 UserBet.create!(user_id: 1,
