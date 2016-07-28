@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @experiment.name %>
+</p>
+
+<p>
+  <strong>Metric:</strong>
+  <%= @experiment.metric %>
+</p>
+
+<p>
+  <strong>Estimated result date:</strong>
+  <%= @experiment.estimated_result_date %>
+</p>
+
+<p>
+  <strong>Actual result date:</strong>
+  <%= @experiment.bet_by_date %>
+</p>
+
+<p>
+  <strong>Result:</strong>
+  <%= @experiment.result %>
+</p>
+
+<%= link_to 'Edit', edit_experiment_path(@experiment) %> |
+<%= link_to 'Back', experiments_path %>

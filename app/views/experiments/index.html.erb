@@ -1,0 +1,55 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">ACTIVE BETS</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <% @active_experiments.each do |experiment| %>
+          <th>
+            <%= experiment.name %>
+            <% if current_user.present? && current_user.admin? %>
+              | <%= link_to "delete", experiment, method: :delete,
+                                            data: { confirm: "You sure?" } %>
+            <% end %>
+          </th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Metrics</td>
+        <% @active_experiments.each do |experiment| %>
+          <td><%= experiment.metric %></td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>Estimated Results Date</td>
+        <% @active_experiments.each do |experiment| %>
+          <td><%= experiment.estimated_result_date %></td>
+        <% end %>
+      </tr>
+      <% @active_bet_users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <% @active_experiments.each do |experiment| %>
+            <td><%= @user_bets_table[experiment.id][user.id] %></td>
+          <% end %>
+        </tr>
+      <% end %>
+      <tr class="info">
+        <td>RESULT</td>
+        <% @active_experiments.each do |experiment| %>
+          <td><%= experiment.result %></td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<div>
+  <%= link_to 'Place Your Bets (as to a Feature’s Benefits)', new_user_bet_path, style: "float: left" %>
+  <%= link_to 'Add Experiment', new_experiment_path, style: "float: right" %>
+</div>

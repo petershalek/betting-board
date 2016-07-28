@@ -4,12 +4,12 @@ one:
   name: MyString
   metric: MyString
   estimated_result_date: 2016-07-26
-  actual_result_date: 2016-07-26
+  bet_by_date: 2016-07-24
   result: 9.99
 
 two:
   name: MyString
   metric: MyString
   estimated_result_date: 2016-07-26
-  actual_result_date: 2016-07-26
+  bet_by_date: 2016-07-24
   result: 9.99

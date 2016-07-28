@@ -1,0 +1,93 @@
+class ExperimentsController < ApplicationController
+  before_action :set_experiment, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :edit, :update]
+
+  # GET /experiments
+  # GET /experiments.json
+  def index
+    @experiments = Experiment.all
+    @user_bets = UserBet.all
+
+    # Build hash for Users and Bets to print
+    @user_bets_table = {}
+    @experiments.each do |experiment|
+      @user_bets_table[experiment.id] = {}
+    end
+    @user_bets.each do |user_bet|
+      @user_bets_table[user_bet.experiment_id][user_bet.user_id] = user_bet.user_bet
+    end
+
+    # Create a list of Users.
+    # TODO Filter for only relevant users (i.e. those with active bets)
+    @active_bet_users = User.all
+
+    # Create a list of Experiments.
+    # TODO Filter for only relevant experiments (i.e. those with active bets)
+    @active_experiments = Experiment.all
+  end
+
+  # GET /experiments/1
+  # GET /experiments/1.json
+  def show
+  end
+
+  # GET /experiments/new
+  def new
+    @experiment = Experiment.new
+  end
+
+  # GET /experiments/1/edit
+  def edit
+  end
+
+  # POST /experiments
+  # POST /experiments.json
+  def create
+    @experiment = Experiment.new(experiment_params)
+
+    respond_to do |format|
+      if @experiment.save
+        format.html { redirect_to @experiment, notice: 'Experiment was successfully created.' }
+        format.json { render :show, status: :created, location: @experiment }
+      else
+        format.html { render :new }
+        format.json { render json: @experiment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /experiments/1
+  # PATCH/PUT /experiments/1.json
+  def update
+    respond_to do |format|
+      if @experiment.update(experiment_params)
+        format.html { redirect_to @experiment, notice: 'Experiment was successfully updated.' }
+        format.json { render :show, status: :ok, location: @experiment }
+      else
+        format.html { render :edit }
+        format.json { render json: @experiment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /experiments/1
+  # DELETE /experiments/1.json
+  def destroy
+    @experiment.destroy
+    respond_to do |format|
+      format.html { redirect_to experiments_url, notice: 'Experiment was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_experiment
+      @experiment = Experiment.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def experiment_params
+      params.require(:experiment).permit(:name, :metric, :estimated_result_date, :bet_by_date, :result)
+    end
+end

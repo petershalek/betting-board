@@ -11,19 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+  <div class="form-group">
+    <%= f.label :experiment_id %><br>
+    <%= collection_select(:user_bet, :experiment_id, @open_bet_experiments, :id, :name, {}, {:class=>'form-control'}) %>
   </div>
-  <div class="field">
-    <%= f.label :bet_id %><br>
-    <%= f.number_field :bet_id %>
-  </div>
-  <div class="field">
-    <%= f.label :bet %><br>
-    <%= f.text_field :bet %>
+  <div class="form-group">
+    <%= f.label "Your Bet" %><br>
+    <%= f.text_field :user_bet, class: "form-control" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Place Bet', :class => 'btn btn-primary' %>
   </div>
 <% end %>

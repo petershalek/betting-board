@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :account_activations, only: [:edit]
   resources :user_bets
-  resources :bets
+  resources :experiments
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.

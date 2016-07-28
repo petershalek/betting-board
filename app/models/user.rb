@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :user_bets, dependent: :destroy
+
   attr_accessor :remember_token, :activation_token
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -53,8 +55,6 @@ class User < ActiveRecord::Base
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
   end
-
-  has_many :user_bets
 
   private
 

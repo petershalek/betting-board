@@ -18,7 +18,7 @@ class UserBetsControllerTest < ActionController::TestCase
 
   test "should create user_bet" do
     assert_difference('UserBet.count') do
-      post :create, user_bet: { bet: @user_bet.bet, bet_id: @user_bet.bet_id, user_id: @user_bet.user_id }
+      post :create, user_bet: { experiment: @user_bet.experiment, experiment_id: @user_bet.experiment_id, user_id: @user_bet.user_id }
     end
 
     assert_redirected_to user_bet_path(assigns(:user_bet))
@@ -35,7 +35,7 @@ class UserBetsControllerTest < ActionController::TestCase
   end
 
   test "should update user_bet" do
-    patch :update, id: @user_bet, user_bet: { bet: @user_bet.bet, bet_id: @user_bet.bet_id, user_id: @user_bet.user_id }
+    patch :update, id: @user_bet, user_bet: { user_bet: @user_bet.user_bet, experiment_id: @user_bet.experiment_id, user_id: @user_bet.user_id }
     assert_redirected_to user_bet_path(assigns(:user_bet))
   end
 

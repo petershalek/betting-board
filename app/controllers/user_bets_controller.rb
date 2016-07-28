@@ -1,5 +1,6 @@
 class UserBetsController < ApplicationController
   before_action :set_user_bet, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user
 
   # GET /user_bets
   # GET /user_bets.json
@@ -15,6 +16,10 @@ class UserBetsController < ApplicationController
   # GET /user_bets/new
   def new
     @user_bet = UserBet.new
+
+    # Create a list of Experiments.
+    # TODO Filter for only relevant experiments (i.e. those before the bet date)
+    @open_bet_experiments = Experiment.where('bet_by_date > ?', Time.zone.now)
   end
 
   # GET /user_bets/1/edit
@@ -24,16 +29,14 @@ class UserBetsController < ApplicationController
   # POST /user_bets
   # POST /user_bets.json
   def create
-    @user_bet = UserBet.new(user_bet_params)
+    @user_bet = current_user.user_bets.build(user_bet_params)
 
-    respond_to do |format|
-      if @user_bet.save
-        format.html { redirect_to @user_bet, notice: 'User bet was successfully created.' }
-        format.json { render :show, status: :created, location: @user_bet }
-      else
-        format.html { render :new }
-        format.json { render json: @user_bet.errors, status: :unprocessable_entity }
-      end
+    if @user_bet.save
+      flash[:success] = "Your bet is in!"
+      redirect_to root_url
+    else
+      format.html { render :new }
+      format.json { render json: @user_bet.errors, status: :unprocessable_entity }
     end
   end
 
@@ -69,6 +72,6 @@ class UserBetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_bet_params
-      params.require(:user_bet).permit(:user_id, :bet_id, :bet)
+      params.require(:user_bet).permit(:experiment_id, :user_bet)
     end
 end

@@ -1,0 +1,41 @@
+<%= form_for(@experiment) do |f| %>
+  <% if @experiment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@experiment.errors.count, "error") %> prohibited this experiment from being saved:</h2>
+
+      <ul>
+      <% @experiment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label "Experiment name" %><br>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :metric %><br>
+    <%= f.text_field :metric, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :estimated_result_date %><br>
+    <%= f.date_select :estimated_result_date,
+        {:order => [:day, :month, :year], :start_year => 2016, :end_year => 2017},
+        {:class => "form-control"} %>
+  </div>
+  <div class="form-group">
+    <%= f.label :bet_by_date %><br>
+    <%= f.date_select :bet_by_date,
+        {:order => [:day, :month, :year], :start_year => 2016, :end_year => 2017},
+        {:class => "form-control"} %>
+  </div>
+  <div class="form-group">
+    <%= f.label :result %><br>
+    <%= f.text_field :result, :class => 'form-control' %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Create Experiment', :class => 'btn btn-primary' %>
+  </div>
+<% end %>
